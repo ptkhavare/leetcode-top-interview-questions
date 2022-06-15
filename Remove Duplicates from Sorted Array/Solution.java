@@ -1,24 +1,20 @@
 class Solution {
-    public int removeDuplicates(int[] nums) {
-        int num = 0;
-        if (nums.length == 1) {
-            return num + 1;
-        } else {
-            for (int i = 0, j = 1; j < nums.length; j++) {
+    public int maxProfit(int[] prices) {
+        int profit = 0;
 
-                if (nums[i] != nums[j]) {
-                    nums[++i] = nums[j];
-                }
-                num = i + 1;
+        for (int i = 0; i + 1 < prices.length; i++) {
+            if ((prices[i + 1] - prices[i]) > 0) {
+                profit += prices[i + 1] - prices[i];
+                i++;
             }
         }
-        return num;
+        return profit;
     }
 
     public static void main(String args[]) {
         Solution solution = new Solution();
-        int nums[] = { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
-        System.out.println(solution.removeDuplicates(nums));
+        int prices[] = { 1, 2, 3, 4, 5 };
+        System.out.println(solution.maxProfit(prices));
     }
 
 }
